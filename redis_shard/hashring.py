@@ -79,7 +79,7 @@ class HashRing(object):
         if len(self.ring) == 0:
             return [None, None]
         crc = self.hash_method(b(key))
-        idx = bisect.bisect(self.sorted_keys, crc)
+        idx = bisect.bisect(self.sorted_keys, crc) #获取crc在sorted_keys中的排序位置
         # prevents out of range index
         idx = min(idx, (self.replicas * len(self.nodes)) - 1)
         return [self.ring[self.sorted_keys[idx]], idx]
